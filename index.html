@@ -12,15 +12,14 @@
     /* See Step 1 in the guide       */
 
     :root {
-      --purple-deep: #4a1f3a;
-      --purple-mid: #5b1843;
-      --purple-btn: #4A3A8A;
-      --purple-btn-hover: #5B1843;
-      --purple-accent: #7B6DD0;
-      --purple-light: #8e6881;
-      --purple-xlight: #EDE9FF;
-      --text: #F5F3FF;
-      --text-muted: #5B1843;
+      --bg: #1A0813;
+      --card: rgba(91,24,67,0.4);
+      --btn: #5B1843;
+      --btn-hover: #6E1E50;
+      --accent: #5B1843;
+      --light: #D4A0BC;
+      --text: #FAF0F5;
+      --muted: #C98AAE;
       --border: rgba(123, 109, 208, 0.2);
     }
 
@@ -219,7 +218,7 @@
         <div class="avatar">MB</div>
         <div class="avatar">+</div>
       </div>
-      <span id="counter-text">247 advogados já cadastrados</span>
+      <span id="counter-text">268 advogados cadastrados</span>
     </div>
 
     <div class="form">
@@ -228,7 +227,7 @@
         <input type="text" id="lname" placeholder="Sobrenome" autocomplete="family-name" />
       </div>
       <input type="email" id="email" placeholder="Email" autocomplete="email" />
-      <select id="role">
+      <select id="Posição">
         <option value="" disabled selected>Your role</option>
         <option>Autônomo</option>
         <option>Senior</option>
@@ -239,23 +238,23 @@
       </select>
       <div class="error" id="error-msg">⚠ Preencha todos os campos.</div>
       <div class="error" id="dup-msg">⚠ E-mail já cadastrado.</div>
-      <button class="btn" id="submit-btn" onclick="handleSubmit()">→ Request early access</button>
+      <button class="btn" id="submit-btn" onclick="handleSubmit()">→ Solicitar a minha vaga exclusiva</button>
     </div>
 
-    <p class="privacy">🔒Sem spam. Cancele quando quiser.</p>
+    <p class="privacy">🔒Seus dados são tratados com total confidencialidade.</p>
 
     <hr />
 
     <div class="features">
       <div class="feat">
         <div class="feat-icon">📄</div>
-        <div class="feat-title">Correção de peça</div>
-        <div class="feat-desc">Instant clause analysis and risk flags</div>
+        <div class="feat-title">Correção de Peças</div>
+        <div class="feat-desc">Corrija sua petição de acordo com as melhores estratégias jurídicas</div>
       </div>
       <div class="feat">
         <div class="feat-icon">📚</div>
         <div class="feat-title">Pesquisa de Juriprudência</div>
-        <div class="feat-desc">Analise e corrija jurisprudências</div>
+        <div class="feat-desc">Analise e corrije jurisprudências atualizadas e relevantes</div>
       </div>
       <div class="feat">
         <div class="feat-icon">✍️</div>
