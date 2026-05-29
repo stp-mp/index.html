@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Early Access — Your LegalTech AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    /* ── REPLACE THESE TWO VALUES ── */
+    /* See Step 1 in the guide       */
+
+    :root {
+      --purple-deep: #1A1040;
+      --purple-mid: #2D1F5E;
+      --purple-btn: #4A3A8A;
+      --purple-btn-hover: #5A4A9E;
+      --purple-accent: #7B6DD0;
+      --purple-light: #C4B9F5;
+      --purple-xlight: #EDE9FF;
+      --text: #F5F3FF;
+      --text-muted: #A89EC8;
+      --border: rgba(123, 109, 208, 0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--purple-deep);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(74,58,138,0.25) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(123,109,208,0.15) 0%, transparent 50%);
+    }
+
+    .card {
+      background: rgba(45, 31, 94, 0.4);
+      border: 0.5px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      backdrop-filter: blur(12px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(74,58,138,0.5);
+      color: var(--purple-light);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.75rem;
+      border: 0.5px solid rgba(123,109,208,0.3);
+    }
+    .badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--purple-accent); display: inline-block; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #F0EEFF;
+    }
+    h1 span { color: var(--purple-accent); }
+
+    .sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+    .avatars { display: flex; }
+    .avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--purple-btn);
+      border: 2px solid var(--purple-deep);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 500;
+      color: var(--purple-light);
+      margin-right: -8px;
+    }
+
+    .form { display: flex; flex-direction: column; gap: 12px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    input, select {
+      background: rgba(255,255,255,0.05);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input::placeholder { color: rgba(196,185,245,0.35); }
+    input:focus, select:focus {
+      border-color: var(--purple-accent);
+      box-shadow: 0 0 0 3px rgba(123,109,208,0.15);
+    }
+    select { appearance: none; cursor: pointer; }
+    select option { background: #2D1F5E; color: var(--text); }
+
+    .btn {
+      background: var(--purple-btn);
+      color: var(--purple-xlight);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 4px;
+      letter-spacing: 0.01em;
+    }
+    .btn:hover { background: var(--purple-btn-hover); }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .privacy {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    hr { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+    .features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .feat {
+      padding: 14px 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      border: 0.5px solid var(--border);
+    }
+    .feat-icon { font-size: 18px; margin-bottom: 7px; }
+    .feat-title { font-size: 12px; font-weight: 500; margin-bottom: 3px; color: #D8D0F8; }
+    .feat-desc { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+
+    .error { font-size: 12px; color: #F09595; margin-top: 4px; display: none; }
+
+    /* Success */
+    .success-view {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      padding: 1rem 0;
+    }
+    .success-icon {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: rgba(74,58,138,0.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      border: 0.5px solid rgba(123,109,208,0.4);
+    }
+    .success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #F0EEFF;
+    }
+    .success-pos { font-size: 14px; color: var(--purple-accent); font-weight: 500; }
+    .success-sub { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 340px; }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.5rem; }
+      h1 { font-size: 32px; }
+      .row { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- FORM VIEW -->
+  <div id="form-view">
+    <div class="badge"><span class="dot"></span> Now accepting early access</div>
+    <h1>Legal intelligence,<br><span>built for precision.</span></h1>
+    <p class="sub">Your AI-powered legal assistant that drafts, reviews, and researches — so you can focus on what matters most.</p>
+
+    <div class="counter">
+      <div class="avatars">
+        <div class="avatar">AK</div>
+        <div class="avatar">LR</div>
+        <div class="avatar">MB</div>
+        <div class="avatar">+</div>
+      </div>
+      <span id="counter-text">247 lawyers already on the list</span>
+    </div>
+
+    <div class="form">
+      <div class="row">
+        <input type="text" id="fname" placeholder="First name" autocomplete="given-name" />
+        <input type="text" id="lname" placeholder="Last name" autocomplete="family-name" />
+      </div>
+      <input type="email" id="email" placeholder="Work email" autocomplete="email" />
+      <select id="role">
+        <option value="" disabled selected>Your role</option>
+        <option>Attorney / Lawyer</option>
+        <option>Partner</option>
+        <option>In-house counsel</option>
+        <option>Legal analyst</option>
+        <option>Law student</option>
+        <option>Other</option>
+      </select>
+      <div class="error" id="error-msg">⚠ Please fill in all fields.</div>
+      <div class="error" id="dup-msg">⚠ This email is already on the list!</div>
+      <button class="btn" id="submit-btn" onclick="handleSubmit()">→ Request early access</button>
+    </div>
+
+    <p class="privacy">🔒 No spam. Unsubscribe anytime. Your data stays private.</p>
+
+    <hr />
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">📄</div>
+        <div class="feat-title">Contract review</div>
+        <div class="feat-desc">Instant clause analysis and risk flags</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📚</div>
+        <div class="feat-title">Legal research</div>
+        <div class="feat-desc">Case law and precedent in seconds</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">✍️</div>
+        <div class="feat-title">Document drafting</div>
+        <div class="feat-desc">Motions, briefs, and memos drafted fast</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS VIEW -->
+  <div class="success-view" id="success-view">
+    <div class="success-icon">✓</div>
+    <p class="success-title" id="success-name">You're on the list.</p>
+    <p class="success-pos" id="success-pos"></p>
+    <p class="success-sub">We'll reach out soon with your early access invite. Stay tuned.</p>
+  </div>
+
+</div>
+
+<script>
+  // ── PASTE YOUR SUPABASE VALUES HERE ──────────────────────────────
+  const SUPABASE_URL  = 'https://xdcddgvttmtdkwsztcqx.supabase.co/rest/v1/waitlist';   // e.g. https://xyzabc.supabase.co
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkY2RkZ3Z0dG10ZGt3c3p0Y3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNjQ4MDYsImV4cCI6MjA5NTY0MDgwNn0.9FhKxWR1vW98zgnPw7yPfMYxbS3DQ5Lb75N40HeHWVc';      // long string starting with eyJ...
+  // ─────────────────────────────────────────────────────────────────
+
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  async function handleSubmit() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const role  = document.getElementById('role').value;
+
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('dup-msg').style.display   = 'none';
+
+    if (!fname || !lname || !email || !role) {
+      document.getElementById('error-msg').style.display = 'block';
+      return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Saving your spot…';
+
+    const { error } = await db.from('waitlist').insert([
+      { first_name: fname, last_name: lname, email, role }
+    ]);
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = '→ Request early access';
+      if (error.code === '23505') {
+        document.getElementById('dup-msg').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+      return;
+    }
+
+    // Count total signups for position display
+    const { count } = await db.from('waitlist').select('*', { count: 'exact', head: true });
+
+    document.getElementById('form-view').style.display    = 'none';
+    const sv = document.getElementById('success-view');
+    sv.style.display = 'flex';
+    document.getElementById('success-name').textContent = `You're on the list, ${fname}.`;
+    document.getElementById('success-pos').textContent  = `#${count || '?'} in line — early access incoming`;
+  }
+</script>
+</body>
+</html>
