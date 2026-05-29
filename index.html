@@ -12,7 +12,7 @@
     /* See Step 1 in the guide       */
 
     :root {
-      --purple-deep: #1A1040;
+      --purple-deep: #5B1842;
       --purple-mid: #2D1F5E;
       --purple-btn: #4A3A8A;
       --purple-btn-hover: #5A4A9E;
@@ -208,9 +208,9 @@
 
   <!-- FORM VIEW -->
   <div id="form-view">
-    <div class="badge"><span class="dot"></span> Now accepting early access</div>
-    <h1>Legal intelligence,<br><span>built for precision.</span></h1>
-    <p class="sub">Your AI-powered legal assistant that drafts, reviews, and researches — so you can focus on what matters most.</p>
+    <div class="badge"><span class="dot"></span> Ganhe acesso antecipado</div>
+    <h1>Seu Sócio em IA,<br><span>criado com precisão.</span></h1>
+    <p class="sub">Seu assistente jurídico com IA que analisa, corrige e cria sua defesa — no padrão dos melhores escritórios de advocacia.</p>
 
     <div class="counter">
       <div class="avatars">
@@ -219,48 +219,48 @@
         <div class="avatar">MB</div>
         <div class="avatar">+</div>
       </div>
-      <span id="counter-text">247 lawyers already on the list</span>
+      <span id="counter-text">247 advogados já cadastrados</span>
     </div>
 
     <div class="form">
       <div class="row">
-        <input type="text" id="fname" placeholder="First name" autocomplete="given-name" />
-        <input type="text" id="lname" placeholder="Last name" autocomplete="family-name" />
+        <input type="text" id="fname" placeholder="Nome" autocomplete="given-name" />
+        <input type="text" id="lname" placeholder="Sobrenome" autocomplete="family-name" />
       </div>
-      <input type="email" id="email" placeholder="Work email" autocomplete="email" />
+      <input type="email" id="email" placeholder="Email" autocomplete="email" />
       <select id="role">
         <option value="" disabled selected>Your role</option>
-        <option>Attorney / Lawyer</option>
-        <option>Partner</option>
-        <option>In-house counsel</option>
-        <option>Legal analyst</option>
-        <option>Law student</option>
-        <option>Other</option>
+        <option>Autônomo</option>
+        <option>Senior</option>
+        <option>Sócio</option>
+        <option>Junior</option>
+        <option>Bacharel de direito</option>
+        <option>Outro</option>
       </select>
-      <div class="error" id="error-msg">⚠ Please fill in all fields.</div>
-      <div class="error" id="dup-msg">⚠ This email is already on the list!</div>
+      <div class="error" id="error-msg">⚠ Preencha todos os campos.</div>
+      <div class="error" id="dup-msg">⚠ E-mail já cadastrado.</div>
       <button class="btn" id="submit-btn" onclick="handleSubmit()">→ Request early access</button>
     </div>
 
-    <p class="privacy">🔒 No spam. Unsubscribe anytime. Your data stays private.</p>
+    <p class="privacy">🔒Sem spam. Cancele quando quiser.</p>
 
     <hr />
 
     <div class="features">
       <div class="feat">
         <div class="feat-icon">📄</div>
-        <div class="feat-title">Contract review</div>
+        <div class="feat-title">Correção de peça</div>
         <div class="feat-desc">Instant clause analysis and risk flags</div>
       </div>
       <div class="feat">
         <div class="feat-icon">📚</div>
-        <div class="feat-title">Legal research</div>
-        <div class="feat-desc">Case law and precedent in seconds</div>
+        <div class="feat-title">Pesquisa de Juriprudência</div>
+        <div class="feat-desc">Analise e corrija jurisprudências</div>
       </div>
       <div class="feat">
         <div class="feat-icon">✍️</div>
-        <div class="feat-title">Document drafting</div>
-        <div class="feat-desc">Motions, briefs, and memos drafted fast</div>
+        <div class="feat-title">Crie sua defesa</div>
+        <div class="feat-desc">Receba uma defesa impecável em segundos.</div>
       </div>
     </div>
   </div>
@@ -268,9 +268,9 @@
   <!-- SUCCESS VIEW -->
   <div class="success-view" id="success-view">
     <div class="success-icon">✓</div>
-    <p class="success-title" id="success-name">You're on the list.</p>
+    <p class="success-title" id="success-name">Você está na lista!</p>
     <p class="success-pos" id="success-pos"></p>
-    <p class="success-sub">We'll reach out soon with your early access invite. Stay tuned.</p>
+    <p class="success-sub">Entraremos em contato em breve com o seu convite. Bem vindo(a) Mais Petições.</p>
   </div>
 
 </div>
@@ -312,7 +312,7 @@
       if (error.code === '23505') {
         document.getElementById('dup-msg').style.display = 'block';
       } else {
-        alert('Something went wrong. Please try again.');
+        alert(Algo deu errado. Tente novamente.);
       }
       return;
     }
