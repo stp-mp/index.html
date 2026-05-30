@@ -15,7 +15,7 @@
       --accent: #E8C4D0;
       --light: #E8C4D0;
       --text: #FAF0F4;
-      --muted: #C4768F;
+      --muted: #E8C4D0;
       --border: rgba(232,196,208,0.2);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -138,34 +138,34 @@
         <input type="text" id="fname" placeholder="Nome" />
         <input type="text" id="lname" placeholder="Sobrenome" />
       </div>
-      <input type="email" id="email" placeholder="E-mail profissional" />
-      <select id="role">
+      <input type="email" id="email" placeholder="E-mail" />
+      <select id="Posição">
         <option value="" disabled selected>Sua função</option>
-        <option>Advogado</option>
+        <option>Autônomo</option>
+        <option>Senior</option>
         <option>Sócio</option>
-        <option>Jurídico interno</option>
-        <option>Analista jurídico</option>
-        <option>Estudante de direito</option>
+        <option>Junior</option>
+        <option>Bacharel de Direito</option>
         <option>Outro</option>
       </select>
       <div class="errmsg" id="err1">Preencha todos os campos.</div>
-      <div class="errmsg" id="err2">Este e-mail já está na lista!</div>
+      <div class="errmsg" id="err2">E-mail cadastrado</div>
       <div class="errmsg" id="err3">Algo deu errado. Tente novamente.</div>
       <button class="btn" id="btn" onclick="handleSubmit()">→ Solicitar a minha vaga exclusiva</button>
     </div>
     <p class="privacy">🔒 Seus dados são tratados com total confidencialidade.</p>
     <hr />
     <div class="features">
-      <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Revisão de peças</div><div class="feat-desc">Corrige gramática, coesão jurídica e aprimora a argumentação até o texto ficar impecável</div></div>
-      <div class="feat"><div class="feat-icon">📚</div><div class="feat-title">Jurisprudência atualizada</div><div class="feat-desc">Analisa seu caso e sugere as jurisprudências mais recentes e relevantes</div></div>
-      <div class="feat"><div class="feat-icon">⚖️</div><div class="feat-title">Blindagem da defesa</div><div class="feat-desc">Identifica os pontos frágeis da sua tese e sugere como torná-la irrefutável</div></div>
+      <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Correção de eças</div><div class="feat-desc">Corrija sua petição de acordo com as melhores estratégias jurídicas</div></div>
+      <div class="feat"><div class="feat-icon">📚</div><div class="feat-title">Jurisprudência atualizada</div><div class="feat-desc">Analisa e corrige jurisprudências mais recentes e relevantes</div></div>
+      <div class="feat"><div class="feat-icon">⚖️</div><div class="feat-title">Crie sua defesa</div><div class="feat-desc">Receba uma defesa impecável em segundos.</div></div>
     </div>
   </div>
   <div class="success" id="success-view">
     <div class="success-icon">✓</div>
     <h2 id="success-name">Bem-vindo à Mais Petições.</h2>
     <p class="success-pos" id="success-pos"></p>
-    <p>Nossa equipe entrará em contato em breve com os próximos passos para o seu acesso.</p>
+    <p>Entraremos em contato em breve com o seu convite. Bem vindo(a) Mais Petições</p>
   </div>
 </div>
 <script>
