@@ -1,33 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head> 
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Early Access — Your LegalTech AI</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Acesso Antecipado — Mais Petições</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* ── REPLACE THESE TWO VALUES ── */
-    /* See Step 1 in the guide       */
-
     :root {
-      --purple-deep: #4A1F3A;
-      --purple-mid: #5B1843;
-      --purple-btn: #5B1843;
-      --purple-btn-hover: #5B1843;
-      --purple-accent: #6E2253;
-      --purple-light: #8E6881;
-      --purple-xlight: #F6F6F6;
-      --text: #F5F3FF;
-      --text-muted: #4A1F3A;
-      --border: rgba(123, 109, 208, 0.2);
+      --bg: #4a1f3a;
+      --card: #3a1530;
+      --btn: #5B1843;
+      --btn-hover: #7D2459;
+      --accent: #E8C4D0;
+      --light: #E8C4D0;
+      --text: #FAF0F4;
+      --muted: #C4768F;
+      --border: rgba(232,196,208,0.2);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      background: var(--purple-deep);
+      background: var(--bg);
       color: var(--text);
       font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
@@ -35,183 +28,102 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(74,58,138,0.5)) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(123,109,208,0.15) 0%, transparent 50%);
     }
-
     .card {
-      background: rgba(45, 31, 94, 0.4);
+      background: var(--card);
       border: 0.5px solid var(--border);
       border-radius: 20px;
-      padding: 3rem 2.5rem;
-      max-width: 520px;
+      padding: 2.5rem 2rem;
+      max-width: 500px;
       width: 100%;
-      backdrop-filter: blur(12px);
     }
-
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      : rgba(91,24,67,0.5);
-      color: var(--purple-light);
+      background: rgba(91,24,67,0.6);
+      color: var(--light);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       padding: 5px 14px;
       border-radius: 20px;
-      margin-bottom: 1.75rem;
-      border: 0.5px solid rgba(123,109,208,0.2);
+      margin-bottom: 1.5rem;
+      border: 0.5px solid rgba(232,196,208,0.3);
     }
-    .badge .dot { width: 5px; height: 5px; border-radius: 50%; : var(--purple-accent); display: inline-block; }
-
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; }
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 40px;
+      font-size: 38px;
       font-weight: 500;
       line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      color: #F0EEFF;
+      margin-bottom: 0.9rem;
+      color: var(--text);
     }
-    h1 span { color: var(--purple-accent); }
-
-    .sub {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .counter {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 1.75rem;
-    }
+    h1 span { color: var(--accent); }
+    .sub { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 1.75rem; font-weight: 300; }
+    .counter { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); margin-bottom: 1.75rem; }
     .avatars { display: flex; }
-    .avatar {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      : var(--purple-btn);
-      border: 2px solid var(--purple-deep);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 500;
-      color: var(--purple-light);
-      margin-right: -8px;
-    }
-
-    .form { display: flex; flex-direction: column; gap: 12px; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
+    .avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--btn); border: 2px solid var(--card); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: var(--light); margin-right: -8px; }
+    .form { display: flex; flex-direction: column; gap: 11px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
     input, select {
-      : rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.07);
       border: 0.5px solid var(--border);
       border-radius: 10px;
-      padding: 12px 15px;
+      padding: 12px 14px;
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       color: var(--text);
       width: 100%;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s;
     }
-    input::placeholder { color: rgba(196,185,245,0.35); }
-    input:focus, select:focus {
-      border-color: var(--purple-accent);
-      box-shadow: 0 0 0 3px rgba(91,24,67,0.2);
-    }
+    input::placeholder { color: rgba(232,196,208,0.35); }
+    input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,196,208,0.1); }
     select { appearance: none; cursor: pointer; }
-    select option { background: #2D1F5E; color: var(--text); }
-
+    select option { background: #3a1530; color: var(--text); }
     .btn {
-      background: var(--purple-btn);
-      color: var(--purple-xlight);
+      background: var(--btn);
+      color: var(--text);
       border: none;
       border-radius: 10px;
-      padding: 14px 20px;
+      padding: 13px;
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      margin-top: 4px;
-      letter-spacing: 0.01em;
+      transition: background 0.2s;
+      margin-top: 2px;
     }
-    .btn:hover { background: var(--purple-btn-hover); }
-    .btn:active { transform: scale(0.98); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    .privacy {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    hr { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
-
+    .btn:hover { background: var(--btn-hover); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .privacy { font-size: 12px; color: var(--muted); margin-top: 10px; }
+    .errmsg { font-size: 12px; color: #F09595; margin-top: 2px; display: none; }
+    hr { border: none; border-top: 0.5px solid var(--border); margin: 1.75rem 0; }
     .features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-    .feat {
-      padding: 14px 12px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 12px;
-      border: 0.5px solid var(--border);
-    }
-    .feat-icon { font-size: 18px; margin-bottom: 7px; }
-    .feat-title { font-size: 12px; font-weight: 500; margin-bottom: 3px; color: #D8D0F8; }
-    .feat-desc { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
-
-    .error { font-size: 12px; color: #F09595; margin-top: 4px; display: none; }
-
-    /* Success */
-    .success-view {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 14px;
-      padding: 1rem 0;
-    }
-    .success-icon {
-      width: 58px; height: 58px;
-      border-radius: 50%;
-      background: rgba(91,24,67,0.5);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
-      border: 0.5px solid rgba(123,109,208,0.4);
-    }
-    .success-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      font-weight: 500;
-      color: #F0EEFF;
-    }
-    .success-pos { font-size: 14px; color: var(--purple-accent); font-weight: 500; }
-    .success-sub { font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 340px; }
-
+    .feat { padding: 13px 11px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 0.5px solid var(--border); }
+    .feat-icon { font-size: 16px; margin-bottom: 6px; }
+    .feat-title { font-size: 12px; font-weight: 500; margin-bottom: 3px; color: var(--text); }
+    .feat-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+    .success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 1rem 0; }
+    .success-icon { width: 54px; height: 54px; border-radius: 50%; background: rgba(91,24,67,0.6); display: flex; align-items: center; justify-content: center; font-size: 22px; border: 0.5px solid rgba(232,196,208,0.3); }
+    .success h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; color: var(--text); }
+    .success-pos { font-size: 13px; color: var(--accent); font-weight: 500; }
+    .success p { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 320px; }
     @media (max-width: 480px) {
-      .card { padding: 2rem 1.5rem; }
-      h1 { font-size: 32px; }
       .row { grid-template-columns: 1fr; }
       .features { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
     }
   </style>
 </head>
 <body>
 <div class="card">
-
-  <!-- FORM VIEW -->
   <div id="form-view">
     <div class="badge"><span class="dot"></span> Ganhe acesso antecipado</div>
     <h1>Advocacia de alto nível,<br><span>potencializada por inteligência artificial.</span></h1>
     <p class="sub">Seu assistente jurídico com IA que analisa, corrige e cria sua defesa — no padrão dos melhores escritórios de advocacia.</p>
-
     <div class="counter">
       <div class="avatars">
         <div class="avatar">AK</div>
@@ -219,112 +131,69 @@
         <div class="avatar">MB</div>
         <div class="avatar">+</div>
       </div>
-      <span id="counter-text">268 advogados cadastrados</span>
+      <span>268 advogados cadastrados</span>
     </div>
-
     <div class="form">
       <div class="row">
-        <input type="text" id="fname" placeholder="Nome" autocomplete="given-name" />
-        <input type="text" id="lname" placeholder="Sobrenome" autocomplete="family-name" />
+        <input type="text" id="fname" placeholder="Nome" />
+        <input type="text" id="lname" placeholder="Sobrenome" />
       </div>
-      <input type="email" id="email" placeholder="Email" autocomplete="email" />
-      <select id="Posição">
-        <option value="" disabled selected>Your role</option>
-        <option>Autônomo</option>
-        <option>Senior</option>
+      <input type="email" id="email" placeholder="E-mail profissional" />
+      <select id="role">
+        <option value="" disabled selected>Sua função</option>
+        <option>Advogado</option>
         <option>Sócio</option>
-        <option>Junior</option>
-        <option>Bacharel de direito</option>
+        <option>Jurídico interno</option>
+        <option>Analista jurídico</option>
+        <option>Estudante de direito</option>
         <option>Outro</option>
       </select>
-      <div class="error" id="error-msg">⚠ Preencha todos os campos.</div>
-      <div class="error" id="dup-msg">⚠ E-mail já cadastrado.</div>
-      <button class="btn" id="submit-btn" onclick="handleSubmit()">→ Solicitar a minha vaga exclusiva</button>
+      <div class="errmsg" id="err1">Preencha todos os campos.</div>
+      <div class="errmsg" id="err2">Este e-mail já está na lista!</div>
+      <div class="errmsg" id="err3">Algo deu errado. Tente novamente.</div>
+      <button class="btn" id="btn" onclick="handleSubmit()">→ Solicitar a minha vaga exclusiva</button>
     </div>
-
-    <p class="privacy">🔒Seus dados são tratados com total confidencialidade.</p>
-
+    <p class="privacy">🔒 Seus dados são tratados com total confidencialidade.</p>
     <hr />
-
     <div class="features">
-      <div class="feat">
-        <div class="feat-icon">📄</div>
-        <div class="feat-title">Correção de Peças</div>
-        <div class="feat-desc">Corrija sua petição de acordo com as melhores estratégias jurídicas</div>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">📚</div>
-        <div class="feat-title">Pesquisa de Juriprudência</div>
-        <div class="feat-desc">Analise e corrije jurisprudências atualizadas e relevantes</div>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">✍️</div>
-        <div class="feat-title">Crie sua defesa</div>
-        <div class="feat-desc">Receba uma defesa impecável em segundos.</div>
-      </div>
+      <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Revisão de peças</div><div class="feat-desc">Corrige gramática, coesão jurídica e aprimora a argumentação até o texto ficar impecável</div></div>
+      <div class="feat"><div class="feat-icon">📚</div><div class="feat-title">Jurisprudência atualizada</div><div class="feat-desc">Analisa seu caso e sugere as jurisprudências mais recentes e relevantes</div></div>
+      <div class="feat"><div class="feat-icon">⚖️</div><div class="feat-title">Blindagem da defesa</div><div class="feat-desc">Identifica os pontos frágeis da sua tese e sugere como torná-la irrefutável</div></div>
     </div>
   </div>
-
-  <!-- SUCCESS VIEW -->
-  <div class="success-view" id="success-view">
+  <div class="success" id="success-view">
     <div class="success-icon">✓</div>
-    <p class="success-title" id="success-name">Você está na lista!</p>
+    <h2 id="success-name">Bem-vindo à Mais Petições.</h2>
     <p class="success-pos" id="success-pos"></p>
-    <p class="success-sub">Entraremos em contato em breve com o seu convite. Bem vindo(a) Mais Petições.</p>
+    <p>Nossa equipe entrará em contato em breve com os próximos passos para o seu acesso.</p>
   </div>
-
 </div>
-
 <script>
-  // ── PASTE YOUR SUPABASE VALUES HERE ──────────────────────────────
-  const SUPABASE_URL  = 'https://xdcddgvttmtdkwsztcqx.supabase.co/rest/v1/waitlist';   // e.g. https://xyzabc.supabase.co
-  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkY2RkZ3Z0dG10ZGt3c3p0Y3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNjQ4MDYsImV4cCI6MjA5NTY0MDgwNn0.9FhKxWR1vW98zgnPw7yPfMYxbS3DQ5Lb75N40HeHWVc';      // long string starting with eyJ...
-  // ─────────────────────────────────────────────────────────────────
+  const SUPABASE_URL  = 'https://xdcddgvttmtdkwsztcqx.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkY2RkZ3Z0dG10ZGt3c3p0Y3F4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNjQ4MDYsImV4cCI6MjA5NTY0MDgwNn0.9FhKxWR1vW98zgnPw7yPfMYxbS3DQ5Lb75N40HeHWVc';
 
-  const { createClient } = supabase;
-  const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
   async function handleSubmit() {
     const fname = document.getElementById('fname').value.trim();
     const lname = document.getElementById('lname').value.trim();
     const email = document.getElementById('email').value.trim();
     const role  = document.getElementById('role').value;
-
-    document.getElementById('error-msg').style.display = 'none';
-    document.getElementById('dup-msg').style.display   = 'none';
-
-    if (!fname || !lname || !email || !role) {
-      document.getElementById('error-msg').style.display = 'block';
-      return;
-    }
-
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Saving your spot…';
-
-    const { error } = await db.from('waitlist').insert([
-      { first_name: fname, last_name: lname, email, role }
-    ]);
-
+    ['err1','err2','err3'].forEach(id => document.getElementById(id).style.display = 'none');
+    if (!fname || !lname || !email || !role) { document.getElementById('err1').style.display = 'block'; return; }
+    const btn = document.getElementById('btn');
+    btn.disabled = true; btn.textContent = 'Reservando sua vaga…';
+    const { error } = await db.from('waitlist').insert([{ first_name: fname, last_name: lname, email, role }]);
     if (error) {
-      btn.disabled = false;
-      btn.textContent = '→ Request early access';
-      if (error.code === '23505') {
-        document.getElementById('dup-msg').style.display = 'block';
-      } else {
-        alert(Algo deu errado. Tente novamente.);
-      }
+      btn.disabled = false; btn.textContent = '→ Solicitar a minha vaga exclusiva';
+      document.getElementById(error.code === '23505' ? 'err2' : 'err3').style.display = 'block';
       return;
     }
-
-    // Count total signups for position display
     const { count } = await db.from('waitlist').select('*', { count: 'exact', head: true });
-
-    document.getElementById('form-view').style.display    = 'none';
-    const sv = document.getElementById('success-view');
-    sv.style.display = 'flex';
-    document.getElementById('success-name').textContent = `You're on the list, ${fname}.`;
-    document.getElementById('success-pos').textContent  = `#${count || '?'} in line — early access incoming`;
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'flex';
+    document.getElementById('success-name').textContent = `Bem-vindo à Mais Petições, ${fname}.`;
+    document.getElementById('success-pos').textContent = `#${count} na fila — acesso antecipado a caminho`;
   }
 </script>
 </body>
