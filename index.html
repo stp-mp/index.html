@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR"> 
 <head> 
   <meta charset="UTF-8" />
@@ -189,11 +189,9 @@
       document.getElementById(error.code === '23505' ? 'err2' : 'err3').style.display = 'block';
       return;
     }
-    const { count } = await db.from('waitlist').select('id', { count: 'exact', head: true });
     document.getElementById('form-view').style.display = 'none';
     document.getElementById('success-view').style.display = 'flex';
     document.getElementById('success-name').textContent = `Bem-vindo à Mais Petições, ${fname}.`;
-    document.getElementById('success-pos').textContent = `#${count ?? '?'} na fila — acesso antecipado a caminho`;
   }
 </script>
 </body>
