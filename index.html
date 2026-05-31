@@ -156,7 +156,7 @@
     <p class="privacy">🔒 Seus dados são tratados com total confidencialidade.</p>
     <hr />
     <div class="features">
-      <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Correção de eças</div><div class="feat-desc">Corrija sua petição de acordo com as melhores estratégias jurídicas</div></div>
+      <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Correção de Peças</div><div class="feat-desc">Corrija sua petição de acordo com as melhores estratégias jurídicas</div></div>
       <div class="feat"><div class="feat-icon">📚</div><div class="feat-title">Jurisprudência atualizada</div><div class="feat-desc">Analisa e corrige jurisprudências mais recentes e relevantes</div></div>
       <div class="feat"><div class="feat-icon">⚖️</div><div class="feat-title">Crie sua defesa</div><div class="feat-desc">Receba uma defesa impecável em segundos.</div></div>
     </div>
@@ -165,7 +165,7 @@
     <div class="success-icon">✓</div>
     <h2 id="success-name">Bem-vindo à Mais Petições.</h2>
     <p class="success-pos" id="success-pos"></p>
-    <p>Entraremos em contato em breve com o seu convite. Bem vindo(a) Mais Petições</p>
+    <p>Entraremos em contato em breve com o seu convite.</p>
   </div>
 </div>
 <script>
@@ -189,11 +189,11 @@
       document.getElementById(error.code === '23505' ? 'err2' : 'err3').style.display = 'block';
       return;
     }
-    const { count } = await db.from('waitlist').select('*', { count: 'exact', head: true });
+    const { count } = await db.from('waitlist').select('id', { count: 'exact', head: true });
     document.getElementById('form-view').style.display = 'none';
     document.getElementById('success-view').style.display = 'flex';
     document.getElementById('success-name').textContent = `Bem-vindo à Mais Petições, ${fname}.`;
-    document.getElementById('success-pos').textContent = `#${count} na fila — acesso antecipado a caminho`;
+    document.getElementById('success-pos').textContent = `#${count ?? '?'} na fila — acesso antecipado a caminho`;
   }
 </script>
 </body>
